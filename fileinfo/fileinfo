@@ -8,10 +8,7 @@ import socket
 import requests
 
 def valid_extension(html):
-    if "Extension Not Found" in html:
-        return False
-    else:
-        return True
+    return "Extension Not Found" not in html
 
 
 def get_file_type(html):
@@ -51,7 +48,7 @@ def main():
     # Example: script.py OR .py OR py
     extension = args.extension.split(".")[-1]
 
-    url = "https://fileinfo.com/extension/{}".format(extension.replace(".", ""))
+    url = f'https://fileinfo.com/extension/{extension.replace(".", "")}'
 
     r = requests.get(url)
     html = r.text
